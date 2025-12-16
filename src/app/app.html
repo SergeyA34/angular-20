@@ -1,0 +1,43 @@
+<h1>Test angular app</h1>
+<igds-radio-group
+  label="Select button variants"
+  orientation="vertical"
+  (igds-change)="handleChange($event)"
+  >
+  @for (variant of buttonVariants; track variant) {
+    <igds-radio [value]="variant" [label]="variant" />
+  }
+</igds-radio-group>
+
+<br /><br />
+
+<igds-button class="button" [variant]="variant()" size="medium">
+  Example button
+</igds-button>
+
+<br /><br />
+
+<h2>Input below has a value: {{inputValue()}} (based on signal)</h2>
+<igds-input
+  dir="ltr"
+  type="text"
+  label="Demo input:"
+  placeholder="Enter value..."
+  [value]="inputValue()"
+  (igds-input)="handleInput($event)"
+></igds-input>
+
+<br /><br />
+
+<form [formGroup]="form" (ngSubmit)="submit($event)">
+  <app-input [value]="''" formControlName="input"></app-input>
+  <br />
+  <igds-button variant="primary" size="small" type="submit">
+    Submit
+  </igds-button>
+</form>
+
+<br /><br />
+
+<h2>Input below has a value: {{inputValue2}}</h2>
+<app-input [(value)]="inputValue2"></app-input>
